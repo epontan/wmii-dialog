@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include <pthread.h>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 
@@ -43,6 +44,7 @@ unsigned int textnw(const char *text, unsigned int len);
 unsigned int textw(const char *text);
 int parse_int(const char *str);
 void split_up(char *text);
+void start_timer(void);
 
 #include "config.h"
 
@@ -279,8 +281,17 @@ split_up(char *text) {
 	count = i + 1;
 }
 
+void
+start_timer() {
+	sleep(timeout);
+	cleanup();
+	XCloseDisplay(dpy);
+	exit(EXIT_SUCCESS);
+}
+
 int
 main(int argc, char *argv[]) {
+	pthread_t timer;
 	unsigned int i;
 
 	if(argc < 2)
@@ -326,6 +337,8 @@ main(int argc, char *argv[]) {
 	setup();
 	drawdialog();
 	XSync(dpy, False);
+	if(timeout > 0)
+		pthread_create(&timer, NULL, (void *)&start_timer, NULL);
 	run();
 	cleanup();
 	XCloseDisplay(dpy);
