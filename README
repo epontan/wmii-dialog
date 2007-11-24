@@ -1,0 +1,31 @@
+wmii-dialog - notification dialog for wmii
+====================
+wmii-dialog is a notification dialog created for wmii. Although, it
+has no technical dependencies to wmii, and can indeed be used in any
+other window manger environment, but it's designed to suit wmii.
+
+wmii-dialog is based on dmenu, created by Anselm R. Garbe,
+Sander van Dijk and Michał Janeczek.
+
+wmii-dialog is not an official component of wmii.
+
+
+Requirements
+------------
+In order to build wmii-dialog you need the Xlib header files.
+
+
+Installation
+------------
+Edit config.mk to match your local setup (wmii-dialog is installed into
+the /usr/local namespace by default).
+
+Afterwards enter the following command to build and install wmii-dialog
+(if necessary as root):
+
+    make clean install
+
+
+Running wmii-dialog
+-------------
+See the man page for details.

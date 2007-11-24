@@ -1,0 +1,46 @@
+.TH WMII-DIALOG 1 wmii-dialog\-VERSION
+.SH NAME
+wmii-dialog \- notification dialog for wmii
+.SH SYNOPSIS
+.B wmii-dialog
+.RB [ \-fn " <font>"]
+.RB [ \-fg " <color>"]
+.RB [ \-bg " <color>"]
+.RB [ \-br " <color>"]
+.RB [ \-hs " <value>"]
+.RB [ \-vs " <value>"]
+.RB [ \-to " <value>"]
+.RB [ \-v ]
+.RB message
+.SH DESCRIPTION
+.SS Overview
+wmii-dialog is a notification dialog created for wmii. Although, it
+has no technical dependencies to wmii, and can indeed be used in any
+other window manger environment, but it's designed to suit wmii.
+.SS Options
+.TP
+.B \-fn <font>
+defines the font.
+.TP
+.B \-fg <color>
+defines the foreground color (#RRGGBB).
+.TP
+.B \-bg <color>
+defines the background color (#RRGGBB).
+.TP
+.B \-br <color>
+defines the border color (#RRGGBB).
+.TP
+.B \-hs <value>
+defines the horizontal spacing between the message and border.
+.TP
+.B \-vs <value>
+defines the vertical spacing between the message and border.
+.TP
+.B \-to <value>
+defines a timeout in seconds when to exit. If it times out, it'll exit
+with a failure. This is to be able to catch whether it timed out or
+not. There is no timeout by default.
+.TP
+.B \-v
+prints version information to standard output, then exits.
