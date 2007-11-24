@@ -3,6 +3,9 @@ VERSION = 0.1
 
 # Customize below to fit your system
 
+# debug
+#DEBUG = -ggdb -std=c99 -pedantic
+
 # paths
 PREFIX = /usr/local
 MANPREFIX = ${PREFIX}/share/man
@@ -15,10 +18,8 @@ INCS = -I. -I/usr/include -I${X11INC}
 LIBS = -L/usr/lib -L${X11LIB} -lX11 -pthread
 
 # flags
-CFLAGS = -Wall -Os ${INCS} -DVERSION=\"${VERSION}\"
-LDFLAGS = ${LIBS}
-#CFLAGS = -g -std=c99 -pedantic -Wall -O2 ${INCS} -DVERSION=\"${VERSION}\"
-#LDFLAGS = -g ${LIBS}
+CFLAGS = ${DEBUG} -Wall -Os ${INCS} -DVERSION=\"${VERSION}\"
+LDFLAGS = ${DEBUG} ${LIBS}
 
 # Solaris
 #CFLAGS = -fast ${INCS} -DVERSION=\"${VERSION}\"
