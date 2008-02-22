@@ -189,9 +189,6 @@ run(void) {
 			if(ev.xexpose.count == 0)
 				drawdialog();
 			break;
-		case VisibilityNotify:
-			XMapRaised(dpy, win);
-			break;
 		}
 }
 
@@ -220,7 +217,7 @@ setup(void) {
 	wa.override_redirect = 1;
 	wa.background_pixmap = ParentRelative;
 	wa.border_pixel = dc.colors[ColBR];
-	wa.event_mask = ExposureMask | ButtonReleaseMask | VisibilityChangeMask;
+	wa.event_mask = ExposureMask | ButtonReleaseMask;
 	win = XCreateWindow(dpy, root,
 			DisplayWidth(dpy, screen) - (dw + 2),
 			DisplayHeight(dpy, screen) - dh - (dc.font.height + 4), dw, dh, 1,
