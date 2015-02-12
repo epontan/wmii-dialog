@@ -1,7 +1,10 @@
 # wmii-dialog - notification dialog for wmii
-# © 2007 Pontus Andersson
 
 include config.mk
+sinclude config.local.mk
+
+# wmii-dialog version
+VERSION = 0.9
 
 BIN = wmii-dialog
 SRC = wmii-dialog.c
@@ -14,16 +17,27 @@ options:
 	@echo "CFLAGS   = ${CFLAGS}"
 	@echo "LDFLAGS  = ${LDFLAGS}"
 	@echo "CC       = ${CC}"
+	@echo "LD       = ${LD}"
 
-.c.o:
-	@echo CC $<
-	@${CC} -c ${CFLAGS} $<
+${BIN}: ${OBJ}
+	@echo LD $@
+	@${LD} -o $@ ${OBJ} ${LDFLAGS}
+	@if [ -z "${DEBUG}" ]; then echo "Stripping $@"; strip $@; fi
+
+${BINDIR}:
+	@mkdir -p ${BINDIR}
 
 ${OBJ}: config.h config.mk
 
-${BIN}: ${OBJ}
-	@echo CC -o $@
-	@${CC} -o $@ ${OBJ} ${LDFLAGS}
+.c.o:
+	@echo CC $@
+	@${CC} -c ${CFLAGS} $<
+
+debug: DEBUG = -ggdb
+debug: all
+
+test: CFLAGS += -DTEST
+test: debug
 
 clean:
 	@echo cleaning
@@ -54,4 +68,4 @@ uninstall:
 	@echo removing manual page from ${DESTDIR}${MANPREFIX}/man1
 	@rm -f ${DESTDIR}${MANPREFIX}/man1/${BIN}.1
 
-.PHONY: all options clean dist install uninstall
+.PHONY: all test debug options clean dist install uninstall

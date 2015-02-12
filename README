@@ -1,5 +1,5 @@
 wmii-dialog - notification dialog for wmii
-====================
+==========================================
 wmii-dialog is a notification dialog created for wmii. Although, it
 has no technical dependencies to wmii, and can indeed be used in any
 other window manger environment, but it's designed to suit wmii.

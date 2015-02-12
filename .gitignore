@@ -1,0 +1,3 @@
+*.o
+wmii-dialog
+config.local.mk
